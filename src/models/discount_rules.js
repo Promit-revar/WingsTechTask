@@ -17,7 +17,10 @@ module.exports = (sequelize, DataTypes) => {
     description: DataTypes.STRING,
     percentage: DataTypes.DOUBLE,
     amount: DataTypes.INTEGER,
-    valid: DataTypes.BOOLEAN
+    valid_upto: DataTypes.DATE,
+    valid: DataTypes.BOOLEAN,
+    productIds: DataTypes.ARRAY(DataTypes.STRING),
+    category: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Discount_Rules',

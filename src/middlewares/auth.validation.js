@@ -6,7 +6,25 @@ exports.validateUser = async(req,res,next) => {
         return res.status(400).json({success: false, message: 'Access Token Missing'});
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if(decoded.role){
+    if(decoded.role === 'user'){
+        next();
+    }
+    else{
+        return res.status(401).json({success: false, message: 'Unauthorized'});
+    }
+}
+catch(error){
+    return res.status(400).json({success: false, message: 'Invalid Access Token Provided'});
+}
+}
+exports.validateAdmin = async(req,res,next) => {
+    try{
+    const token = req.authentication;
+    if(!token){
+        return res.status(400).json({success: false, message: 'Access Token Missing'});
+    }
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    if(decoded.role === 'admin'){
         next();
     }
     else{

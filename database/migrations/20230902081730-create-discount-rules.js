@@ -18,8 +18,17 @@ module.exports = {
       amount: {
         type: Sequelize.INTEGER
       },
+      valid_upto: {
+        type: Sequelize.DATE
+      },
       valid: {
         type: Sequelize.BOOLEAN
+      },
+      productIds: {
+        type: Sequelize.ARRAY(Sequelize.STRING)
+      },
+      category: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,
