@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
 exports.validateUser = async(req,res,next) => {
     try{
-    const token = req.authentication;
+    const token = req.headers.authorization;
     if(!token){
         return res.status(400).json({success: false, message: 'Access Token Missing'});
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if(decoded.role === 'user'){
+    if(decoded.userData.role){
         next();
     }
     else{
@@ -19,12 +19,12 @@ catch(error){
 }
 exports.validateAdmin = async(req,res,next) => {
     try{
-    const token = req.authentication;
+    const token = req.headers.authorization;
     if(!token){
         return res.status(400).json({success: false, message: 'Access Token Missing'});
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    if(decoded.role === 'admin'){
+    if(decoded.userData.role === 'admin'){
         next();
     }
     else{

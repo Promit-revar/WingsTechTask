@@ -14,11 +14,17 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Discount_Rules.init({
+    id:{
+      type: DataTypes.STRING,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
+    },
     description: DataTypes.STRING,
     percentage: DataTypes.DOUBLE,
     amount: DataTypes.INTEGER,
     valid_upto: DataTypes.DATE,
-    valid: DataTypes.BOOLEAN,
+    valid: {type: DataTypes.BOOLEAN, defaultValue: true},
     productIds: DataTypes.ARRAY(DataTypes.STRING),
     category: DataTypes.STRING
   }, {

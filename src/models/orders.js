@@ -14,6 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Orders.init({
+    id:{
+      type: DataTypes.STRING,
+      primaryKey: true,
+      allowNull: false,
+      defaultValue: DataTypes.UUIDV4
+    },
     country: DataTypes.STRING,
     state: DataTypes.STRING,
     productIds: DataTypes.ARRAY(DataTypes.STRING),

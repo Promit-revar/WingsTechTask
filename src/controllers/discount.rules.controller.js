@@ -1,10 +1,10 @@
-const {getProducts,getSingleProduct,addProduct,deleteProduct,updateProduct} = require('../services/product.service');
+const {getDiscountRules,getSingleDiscountRule,updateDiscountRule,addDiscountRule,deleteDiscountRule,removeDiscountRuleFromProduct} = require('../services/discount.rules.service');
 const HTTPError = require('../utils/errors/http.error');
 const NotFoundError = require('../utils/errors/resource.not.found.error');
 
-exports.listProducts = async(req,res) =>{
+exports.listDiscountRules = async(req,res) =>{
     try{
-        const result = await getProducts();
+        const result = await getDiscountRules();
         res.status(200).json({
             success: true,
             result
@@ -22,9 +22,9 @@ exports.listProducts = async(req,res) =>{
             })
     }
 }
-exports.getSingleProduct = async(req,res) =>{
+exports.getSingleDiscountRule = async(req,res) =>{
     try{
-        const result = await getSingleProduct(req.params.id);
+        const result = await getSingleDiscountRule(req.params.id);
         res.status(200).json({
             success: true,
             result
@@ -42,9 +42,9 @@ exports.getSingleProduct = async(req,res) =>{
             })
     }
 }
-exports.createProduct = async(req,res) =>{
+exports.createDiscountRule = async(req,res) =>{
     try{
-        const result = await addProduct(req.body);
+        const result = await addDiscountRule(req.body);
         res.status(200).json({
             success: true,
             result
@@ -62,9 +62,9 @@ exports.createProduct = async(req,res) =>{
             })
     }
 }
-exports.updateProduct = async(req,res) =>{
+exports.updateDiscountRule = async(req,res) =>{
     try{
-        const result = await updateProduct(req.body,req.params.id);
+        const result = await updateDiscountRule(req.body,req.params.id);
         res.status(200).json({
             success: true,
             result
@@ -82,9 +82,29 @@ exports.updateProduct = async(req,res) =>{
             })
     }
 }
-exports.deleteProduct = async(req,res) =>{
+exports.deleteDiscountRule = async(req,res) =>{
     try{
-        const result = await deleteProduct(req.params.id);
+        const result = await deleteDiscountRule(req.params.id);
+        res.status(200).json({
+            success: true,
+            result
+        })
+    }catch(error){
+        if(error instanceof HTTPError){
+            return res.status(error.status).json({
+                 success: false,
+                 message: error.message
+            });
+         }
+        return res.status(500).json({
+                success: false,
+                message: error.message
+            })
+    }
+}
+exports.removeDiscountFromProduct = async(req,res) => {
+    try{
+        const result = await removeDiscountRuleFromProduct(req.params.productId,req.params.id);
         res.status(200).json({
             success: true,
             result
