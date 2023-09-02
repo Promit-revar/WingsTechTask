@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "Promit@2000",
+    "database": "Node_Task_Wings",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port":"5432"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "Promit@2000",
+    "database": "Node_Task_Wings",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port":"5432"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "Promit@2000",
+    "database": "Node_Task_Wings",
+    "host": "127.0.0.1",
+    "dialect": "postgres",
+    "port":"5432"
+  }
+}
