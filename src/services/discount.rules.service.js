@@ -22,6 +22,20 @@ exports.addDiscountRule = async(data) => {
     });
     if(discount) throw new HTTPError('Rule Already exists!',400);
     if(data.amount>0 && data.percentage>0) throw new HTTPError('Discount Rule can either have percentage or amount not both',400);
+    if(data.category === 'All'){
+        const products = JSON.parse(JSON.stringify(await db.Products.findAll()));
+        data.productIds = data.productIds.concat(products.map(item=>item.id))
+    }
+    else if(data.category){
+        const products = JSON.parse(JSON.stringify(await db.Products.findAll({
+            where: {
+                category: data.category
+            }
+        })));
+        
+        data.productIds = data.productIds.concat(products.map(item=>item.id))
+        
+    }
     const discountRule  = await db.Discount_Rules.create({
        ...data
     });

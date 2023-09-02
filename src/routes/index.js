@@ -1,8 +1,9 @@
 const express = require('express');
 const {validateUser, validateAdmin} = require('../middlewares/auth.validation');
-const {loginValidation, registerValidation, createProductValidation,validateId, createDiscountRuleValidation} = require('../middlewares/request.validator');
+const {loginValidation, registerValidation, createProductValidation,validateId, createDiscountRuleValidation, requestQueryValidationTax, createTaxRuleValidation} = require('../middlewares/request.validator');
 const {createProduct,getSingleProduct,listProducts,updateProduct,deleteProduct} = require('../controllers/product.controller');
 const {createDiscountRule,getSingleDiscountRule,listDiscountRules,updateDiscountRule,deleteDiscountRule,removeDiscountFromProduct} = require('../controllers/discount.rules.controller');
+const {listTaxRules,createTaxRule,updateTaxRule,deleteTaxRule} = require('../controllers/tax.controller');
 const {login, register} = require('../controllers/auth.controller');
 const router = express();
 router.use(express.json());
@@ -30,5 +31,10 @@ router.post('/discount-rules/create',validateAdmin,createDiscountRuleValidation,
 router.delete('/discount-rules/:productId/:id',validateAdmin,validateId,removeDiscountFromProduct);
 
 //tax routes ...
+router.get('/tax-rules',validateAdmin,requestQueryValidationTax,listTaxRules);
+router.post('/tax-rules/create',validateAdmin,createTaxRuleValidation,createTaxRule);
+router.patch('/tax-rules/update',validateAdmin,updateTaxRule);
+router.delete('/tax-rules/delete',validateAdmin,validateId,deleteTaxRule);
 
+//order routes ...
 module.exports = router;

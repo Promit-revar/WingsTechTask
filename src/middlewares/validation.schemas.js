@@ -18,9 +18,21 @@ exports.createProductSchema = Joi.object({
 exports.createDiscountRuleSchema = Joi.object({
     description: Joi.string().optional(),
     percentage: Joi.number().max(100).min(0).optional(),
-    amount: Joi.number().when('percentage',{is:Joi.number().max(100).min(0),then: Joi.number().required(),otherwise: Joi.forbidden()}),
+    amount: Joi.number().optional(),
     valid_upto: Joi.date().optional(),
     productIds: Joi.array().required(),
     category: Joi.string().valid('kitchen','gardern','male accessory','female accessory','electronics','all').required(),
+});
+exports.createTaxRuleValidationSchema = Joi.object({
+    country: Joi.string().required(),
+    state: Joi.string().required(),
+    category: Joi.string().valid('kitchen','gardern','male accessory','female accessory','electronics','all').required(),
+    GST: Joi.number().max(100).min(0).required(),
+    SGST: Joi.number().max(100).min(0).required(),
+})
+exports.requestQueryForTaxApiSchema = Joi.object({
+    state: Joi.string().optional(),
+    country: Joi.string().optional(),
+    category: Joi.string().valid('kitchen','gardern','male accessory','female accessory','electronics','all').optional(),
 })
 exports.requestParamsIdValidationSchema = Joi.string().uuid({version:['uuidv4']}).required();

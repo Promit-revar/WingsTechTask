@@ -1,5 +1,5 @@
 const Joi = require('joi');
-const {loginSchema, registerSchema, createProductSchema, requestParamsIdValidationSchema, createDiscountRuleSchema} = require('./validation.schemas');
+const {loginSchema,requestQueryForTaxApiSchema,createTaxRuleValidationSchema, registerSchema, createProductSchema, requestParamsIdValidationSchema, createDiscountRuleSchema} = require('./validation.schemas');
 
 exports.loginValidation = (req,res,next) =>{
     const {error} = loginSchema.validate(req.body);
@@ -46,4 +46,21 @@ exports.createDiscountRuleValidation = (req,res,next) =>{
         next();
     }
 }
-
+exports.requestQueryValidationTax = (req,res,next) =>{
+    const {error} = requestQueryForTaxApiSchema.validate(req.query);
+    if(error) {
+        return res.status(400).json({success:false, message: error.message });
+    }
+    else{
+        next();
+    }
+}
+exports.createTaxRuleValidation = (req,res,next) =>{
+    const {error} = createTaxRuleValidationSchema.validate(req.body);
+    if(error) {
+        return res.status(400).json({success:false, message: error.message });
+    }
+    else{
+        next();
+    }
+}
