@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Orders', {
+    await queryInterface.createTable("Orders", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -10,31 +10,37 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
       },
       country: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       state: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+      },
+      applicableTax: {
+        type: Sequelize.JSON,
       },
       productIds: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.ARRAY(Sequelize.JSON),
+      },
+      overAllDiscount: {
+        type: Sequelize.DOUBLE,
       },
       userId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       amount: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Orders');
-  }
+    await queryInterface.dropTable("Orders");
+  },
 };

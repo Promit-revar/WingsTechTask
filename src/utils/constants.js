@@ -1,0 +1,1 @@
+exports.MAX_TIMESTAMP = new Date(860000000000000);

@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Tax_Rules extends Model {
     /**
@@ -13,15 +11,25 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Tax_Rules.init({
-    country: DataTypes.STRING,
-    GST: DataTypes.DOUBLE,
-    state: DataTypes.STRING,
-    SGST: DataTypes.DOUBLE,
-    category: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Tax_Rules',
-  });
+  Tax_Rules.init(
+    {
+      country: DataTypes.STRING,
+      GST: DataTypes.DOUBLE,
+      state: DataTypes.STRING,
+      SGST: DataTypes.DOUBLE,
+      category: DataTypes.ENUM(
+        "kitchen",
+        "gardern",
+        "male accessory",
+        "female accessory",
+        "electronics",
+        "all"
+      ),
+    },
+    {
+      sequelize,
+      modelName: "Tax_Rules",
+    }
+  );
   return Tax_Rules;
 };

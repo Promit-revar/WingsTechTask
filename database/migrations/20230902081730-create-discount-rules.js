@@ -1,8 +1,8 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Discount_Rules', {
+    await queryInterface.createTable("Discount_Rules", {
       id: {
         allowNull: false,
         primaryKey: true,
@@ -10,37 +10,44 @@ module.exports = {
         defaultValue: Sequelize.UUIDV4,
       },
       description: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
       },
       percentage: {
-        type: Sequelize.DOUBLE
+        type: Sequelize.DOUBLE,
       },
       amount: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
       },
       valid_upto: {
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       valid: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
       },
       productIds: {
-        type: Sequelize.ARRAY(Sequelize.STRING)
+        type: Sequelize.ARRAY(Sequelize.STRING),
       },
       category: {
-        type: Sequelize.STRING
+        type: Sequelize.ENUM(
+          "kitchen",
+          "gardern",
+          "male accessory",
+          "female accessory",
+          "electronics",
+          "all"
+        ),
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
-      }
+        type: Sequelize.DATE,
+      },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Discount_Rules');
-  }
+    await queryInterface.dropTable("Discount_Rules");
+  },
 };

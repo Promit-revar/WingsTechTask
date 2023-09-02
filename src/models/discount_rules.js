@@ -1,7 +1,6 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
+const { MAX_TIMESTAMP } = require("../utils/constants");
 module.exports = (sequelize, DataTypes) => {
   class Discount_Rules extends Model {
     /**
@@ -13,23 +12,34 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Discount_Rules.init({
-    id:{
-      type: DataTypes.STRING,
-      primaryKey: true,
-      allowNull: false,
-      defaultValue: DataTypes.UUIDV4
+  Discount_Rules.init(
+    {
+      id: {
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      description: DataTypes.STRING,
+      percentage: { type: DataTypes.DOUBLE, defaultValue: 0.0 },
+      amount: { type: DataTypes.INTEGER, defaultValue: 0 },
+      valid_upto: { type: DataTypes.DATE, defaultValue: MAX_TIMESTAMP },
+      valid: { type: DataTypes.BOOLEAN, defaultValue: true },
+      productIds: DataTypes.ARRAY(DataTypes.STRING),
+      category: DataTypes.ENUM(
+        "kitchen",
+        "gardern",
+        "male accessory",
+        "female accessory",
+        "electronics",
+        "all",
+        "order"
+      ),
     },
-    description: DataTypes.STRING,
-    percentage: DataTypes.DOUBLE,
-    amount: DataTypes.INTEGER,
-    valid_upto: DataTypes.DATE,
-    valid: {type: DataTypes.BOOLEAN, defaultValue: true},
-    productIds: DataTypes.ARRAY(DataTypes.STRING),
-    category: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'Discount_Rules',
-  });
+    {
+      sequelize,
+      modelName: "Discount_Rules",
+    }
+  );
   return Discount_Rules;
 };

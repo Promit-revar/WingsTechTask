@@ -1,14 +1,14 @@
 const {
-  getTaxRules,
-  addTaxRule,
-  deleteTaxRule,
-  updateTaxRule,
-} = require("../services/tax.service");
+  getOrders,
+  createOrder,
+  deleteOrder,
+} = require("../services/orders.service");
 const HTTPError = require("../utils/errors/http.error");
+const NotFoundError = require("../utils/errors/resource.not.found.error");
 
-exports.listTaxRules = async (req, res) => {
+exports.listOrders = async (req, res) => {
   try {
-    const result = await getTaxRules(req.query);
+    const result = await getOrders(req.query);
     res.status(200).json({
       success: true,
       result,
@@ -26,10 +26,9 @@ exports.listTaxRules = async (req, res) => {
     });
   }
 };
-
-exports.createTaxRule = async (req, res) => {
+exports.createOrder = async (req, res) => {
   try {
-    const result = await addTaxRule(req.body);
+    const result = await createOrder(req.body);
     res.status(200).json({
       success: true,
       result,
@@ -47,29 +46,9 @@ exports.createTaxRule = async (req, res) => {
     });
   }
 };
-exports.updateTaxRule = async (req, res) => {
+exports.deleteOrder = async (req, res) => {
   try {
-    const result = await updateTaxRule(req.body, req.params.id);
-    res.status(200).json({
-      success: true,
-      result,
-    });
-  } catch (error) {
-    if (error instanceof HTTPError) {
-      return res.status(error.status).json({
-        success: false,
-        message: error.message,
-      });
-    }
-    return res.status(500).json({
-      success: false,
-      message: error.message,
-    });
-  }
-};
-exports.deleteTaxRule = async (req, res) => {
-  try {
-    const result = await deleteTaxRule(req.params.id);
+    const result = await deleteOrder(req.params.id);
     res.status(200).json({
       success: true,
       result,
