@@ -5,9 +5,7 @@ const NotFoundError = require("../utils/errors/resource.not.found.error");
 
 exports.getTaxRules = async (query) => {
   const taxes = await db.Tax_Rules.findAndCountAll({
-    where: {
-      query,
-    },
+    where:query
   });
   return taxes;
 };

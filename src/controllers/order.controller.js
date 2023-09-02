@@ -8,7 +8,7 @@ const NotFoundError = require("../utils/errors/resource.not.found.error");
 
 exports.listOrders = async (req, res) => {
   try {
-    const result = await getOrders(req.query);
+    const result = await getOrders(req.user.email);
     res.status(200).json({
       success: true,
       result,
@@ -28,7 +28,7 @@ exports.listOrders = async (req, res) => {
 };
 exports.createOrder = async (req, res) => {
   try {
-    const result = await createOrder(req.body);
+    const result = await createOrder(req.body, req.user.email);
     res.status(200).json({
       success: true,
       result,

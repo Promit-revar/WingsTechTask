@@ -5,9 +5,9 @@ module.exports = {
     await queryInterface.createTable("Tax_Rules", {
       id: {
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
+        type: Sequelize.STRING,
+        defaultValue: Sequelize.UUIDV4,
       },
       country: {
         type: Sequelize.STRING,

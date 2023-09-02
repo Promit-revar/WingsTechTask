@@ -5,25 +5,25 @@ const NotFoundError = require("../utils/errors/resource.not.found.error");
 const { getSingleProduct } = require("./product.service");
 const { getAllDiscountsForProduct } = require("./discount.rules.service");
 const { calculatePrice } = require("../utils/helper");
-exports.getOrders = async (query) => {
+exports.getOrders = async (email) => {
   const orders = await db.Orders.findAndCountAll({
     where: {
-      query,
+      userId: email
     },
   });
   return orders;
 };
-exports.createOrder = async (data) => {
-  const products = await Promise.all(
+exports.createOrder = async (data,email) => {
+  const products = JSON.parse(JSON.stringify(await Promise.all(
     data.productIds.map(async (productId) => {
-      const product = await getSingleProduct(productId);
-      const discountsApplicable = await getAllDiscountsForProduct(productId);
+      const product = JSON.parse(JSON.stringify(await getSingleProduct(productId)));
+      const discountsApplicable = JSON.parse(JSON.stringify(await getAllDiscountsForProduct(productId)));
       const discounted_rate =
         product.price - calculatePrice(discountsApplicable, product);
       return { ...product, discounted_rate };
     })
-  );
-  let totalAmount = products.reduce((total, price) => total + price, 0);
+  )));
+  let totalAmount = products.reduce((total, product) => total + product.discounted_rate, 0);
   const overallDiscount = JSON.parse(
     JSON.stringify(
       await db.Discount_Rules.findOne({
@@ -36,6 +36,7 @@ exports.createOrder = async (data) => {
       })
     )
   );
+  console.log(totalAmount);
   let finalDiscount = 0.0;
   if (overallDiscount) {
     finalDiscount = Math.round(
@@ -53,10 +54,10 @@ exports.createOrder = async (data) => {
       })
     )
   );
-
   if (!applicableTax) {
-    const order = await db.order.create({
+    const order = await db.Orders.create({
       ...data,
+      userId: email,
       productIds: products,
       overallDiscount: finalDiscount,
       amount: totalAmount,
@@ -68,8 +69,9 @@ exports.createOrder = async (data) => {
     totalAmount + Math.round(totalAmount * (applicableTax.GST / 100));
   const SGST =
     totalAmount + Math.round(totalAmount * (applicableTax.SGST / 100));
-  const order = await db.order.create({
+  const order = await db.Orders.create({
     ...data,
+    userId: email,
     productIds: products,
     overallDiscount: finalDiscount,
     applicableTax: applicableTax,
@@ -86,7 +88,7 @@ exports.createOrder = async (data) => {
 exports.deleteOrder = async (id) => {
   const order = JSON.parse(
     JSON.stringify(
-      await db.Products.findOne({
+      await db.Orders.findOne({
         where: {
           id,
         },

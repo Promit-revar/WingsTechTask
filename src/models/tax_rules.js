@@ -13,6 +13,12 @@ module.exports = (sequelize, DataTypes) => {
   }
   Tax_Rules.init(
     {
+      id:{
+        type: DataTypes.STRING,
+        primaryKey: true,
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+      },
       country: DataTypes.STRING,
       GST: DataTypes.DOUBLE,
       state: DataTypes.STRING,

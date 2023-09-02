@@ -34,7 +34,8 @@ module.exports = {
           "male accessory",
           "female accessory",
           "electronics",
-          "all"
+          "all",
+          "order"
         ),
       },
       createdAt: {

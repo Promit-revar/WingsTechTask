@@ -4,7 +4,9 @@ const HTTPError = require("../utils/errors/http.error");
 const NotFoundError = require("../utils/errors/resource.not.found.error");
 const { removeDiscountRuleFromProduct } = require("./discount.rules.service");
 exports.getProducts = async () => {
-  const products = await db.Products.findAndCountAll();
+  const products = await db.Products.findAndCountAll({
+    where:query
+  });
   return products;
 };
 exports.getSingleProduct = async (id) => {

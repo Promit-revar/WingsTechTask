@@ -9,6 +9,7 @@ exports.validateUser = async (req, res, next) => {
     }
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     if (decoded.userData.role) {
+      req.user = decoded.userData;
       next();
     } else {
       return res.status(401).json({ success: false, message: "Unauthorized" });

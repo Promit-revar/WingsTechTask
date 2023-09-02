@@ -12,9 +12,9 @@ exports.calculatePrice = (discounts, product) => {
     product.price
   );
   if (maxFlatDiscount > maxPercentageDiscount) {
-    return maxPercentageDiscount;
+    return maxFlatDiscount;
   }
-  return maxFlatDiscount;
+  return maxPercentageDiscount;
 };
 const findMaxPercentageDiscount = (arr, n, sum) => {
   let i = 0;
@@ -23,7 +23,7 @@ const findMaxPercentageDiscount = (arr, n, sum) => {
     curr_sum = curr_sum - Math.floor(curr_sum * (arr[i].percentage / 100));
     i = i + 1;
   }
-  return curr_sum;
+  return sum-curr_sum;
 };
 const findMaxSubarraySumLessThanN = (arr, n, sum) => {
   let curr_sum = arr[0].amount,

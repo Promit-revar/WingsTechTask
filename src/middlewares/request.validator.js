@@ -7,7 +7,6 @@ const {
   requestParamsIdValidationSchema,
   createDiscountRuleSchema,
   createOrderValidationSchema,
-  requestQueryForOrderApiSchema,
 } = require("./validation.schemas");
 
 exports.loginValidation = (req, res, next) => {
@@ -68,14 +67,6 @@ exports.createTaxRuleValidation = (req, res, next) => {
 };
 exports.createOrderValidation = (req, res, next) => {
   const { error } = createOrderValidationSchema.validate(req.body);
-  if (error) {
-    return res.status(400).json({ success: false, message: error.message });
-  } else {
-    next();
-  }
-};
-exports.requestQueryValidationOrder = (req, res, next) => {
-  const { error } = requestQueryForOrderApiSchema.validate(req.query);
   if (error) {
     return res.status(400).json({ success: false, message: error.message });
   } else {

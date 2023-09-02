@@ -10,7 +10,7 @@ exports.registerSchema = Joi.object({
 });
 exports.createProductSchema = Joi.object({
   name: Joi.string().required(),
-  description: Joi.string().min(10).max(50).required(),
+  description: Joi.string().min(10).max(500).required(),
   price: Joi.number().required(),
   category: Joi.string()
     .valid(
@@ -36,7 +36,8 @@ exports.createDiscountRuleSchema = Joi.object({
       "male accessory",
       "female accessory",
       "electronics",
-      "all"
+      "all",
+      "order"
     )
     .required(),
 });
@@ -52,14 +53,13 @@ exports.createTaxRuleValidationSchema = Joi.object({
       "electronics",
       "all"
     )
-    .required(),
+    .optional(),
   GST: Joi.number().max(100).min(0).required(),
   SGST: Joi.number().max(100).min(0).required(),
 });
 exports.createOrderValidationSchema = Joi.object({
   state: Joi.string().required(),
   country: Joi.string().required(),
-  userId: Joi.number().required(),
   productIds: Joi.array().required(),
 });
 exports.requestQueryForTaxApiSchema = Joi.object({
@@ -75,9 +75,6 @@ exports.requestQueryForTaxApiSchema = Joi.object({
       "all"
     )
     .optional(),
-});
-exports.requestQueryForOrderApiSchema = Joi.object({
-  userId: Joi.number().required(),
 });
 exports.requestParamsIdValidationSchema = Joi.string()
   .uuid({ version: ["uuidv4"] })

@@ -12,7 +12,6 @@ const {
   requestQueryValidationTax,
   createTaxRuleValidation,
   createOrderValidation,
-  requestQueryValidationOrder,
 } = require("../middlewares/request.validator");
 const {
   createProduct,
@@ -110,11 +109,11 @@ router.post(
   createTaxRule
 );
 router.patch("/tax-rules/update", validateAdmin, updateTaxRule);
-router.delete("/tax-rules/delete", validateAdmin, validateId, deleteTaxRule);
+router.delete("/tax-rules/delete/:id", validateAdmin, validateId, deleteTaxRule);
 
 //order routes ...
-router.get("/orders", validateUser, requestQueryValidationOrder, listOrders);
+router.get("/orders", validateUser, listOrders);
 router.post("/orders/create", validateUser, createOrderValidation, createOrder);
-router.delete("/order/delete/:id", validateAdmin, validateId, deleteOrder);
+router.delete("/orders/delete/:id", validateAdmin, validateId, deleteOrder);
 
 module.exports = router;
