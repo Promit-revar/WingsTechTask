@@ -1,0 +1,584 @@
+{
+	"info": {
+		"_postman_id": "c83b3af3-2008-41a8-83bc-44ddff6a4a44",
+		"name": "Wings-Nodejs_task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15376942",
+		"_collection_link": "https://www.postman.com/lively-equinox-336998/workspace/general/collection/15376942-c83b3af3-2008-41a8-83bc-44ddff6a4a44?action=share&source=collection_link&creator=15376942"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "get all products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/products",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ0aThrRUh3NzJiY2NwcW9aYXRoZ3hlWlcuNnppQWNkNjgzdklkZXNUN1FxYW9rOC5nekVvMiIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiIsInVwZGF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiJ9LCJpYXQiOjE2OTM2NTE4ODh9.I9GyFJ-AbwkY0DhcP7-7eBXAWkap9QnAJ6rg0rXMH0I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"Kitchen Set 2\",\r\n    \"price\": 800,\r\n    \"category\": \"kitchen\",\r\n    \"description\":\"2 knives and with 5 miduim size vessels \"\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/products/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get single product",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ0aThrRUh3NzJiY2NwcW9aYXRoZ3hlWlcuNnppQWNkNjgzdklkZXNUN1FxYW9rOC5nekVvMiIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiIsInVwZGF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiJ9LCJpYXQiOjE2OTM2NTE4ODh9.I9GyFJ-AbwkY0DhcP7-7eBXAWkap9QnAJ6rg0rXMH0I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/products/a823f788-744f-460c-953a-854aaa11fdf6",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"a823f788-744f-460c-953a-854aaa11fdf6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update product",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ0aThrRUh3NzJiY2NwcW9aYXRoZ3hlWlcuNnppQWNkNjgzdklkZXNUN1FxYW9rOC5nekVvMiIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiIsInVwZGF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiJ9LCJpYXQiOjE2OTM2NTE4ODh9.I9GyFJ-AbwkY0DhcP7-7eBXAWkap9QnAJ6rg0rXMH0I",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\":\"A22 Ultra\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/products/update/a823f788-744f-460c-953a-854aaa11fdf6",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"update",
+								"a823f788-744f-460c-953a-854aaa11fdf6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete product",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ0aThrRUh3NzJiY2NwcW9aYXRoZ3hlWlcuNnppQWNkNjgzdklkZXNUN1FxYW9rOC5nekVvMiIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiIsInVwZGF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiJ9LCJpYXQiOjE2OTM2NTE4ODh9.I9GyFJ-AbwkY0DhcP7-7eBXAWkap9QnAJ6rg0rXMH0I",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/products/delete/c9476710-48b0-4690-9209-892e6c9d2051",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"products",
+								"delete",
+								"c9476710-48b0-4690-9209-892e6c9d2051"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Discount",
+			"item": [
+				{
+					"name": "create discount",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"description\":\"get 20% off on all samsung products\",\r\n    \"productIds\": [\"f18ec585-b1e5-4f68-9d72-5f6ba7704ca7\"],\r\n    \"percentage\": 20\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/discount-rules/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discount-rules",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "list Discounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/discount-rules",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discount-rules"
+							],
+							"query": [
+								{
+									"key": "Authorization",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyRGF0YSI6eyJpZCI6MiwiZW1haWwiOiJ0ZXN0MkBnbWFpbC5jb20iLCJwYXNzd29yZCI6IiQyYiQxMCQ0aThrRUh3NzJiY2NwcW9aYXRoZ3hlWlcuNnppQWNkNjgzdklkZXNUN1FxYW9rOC5nekVvMiIsInJvbGUiOiJhZG1pbiIsImNyZWF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiIsInVwZGF0ZWRBdCI6IjIwMjMtMDktMDJUMTA6NTE6MDguOTYyWiJ9LCJpYXQiOjE2OTM2NTE4ODh9.I9GyFJ-AbwkY0DhcP7-7eBXAWkap9QnAJ6rg0rXMH0I",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "getSingle Discount",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/discount-rules/40656078-f61c-4c3c-9777-2d0b4705e513",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discount-rules",
+								"40656078-f61c-4c3c-9777-2d0b4705e513"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Discount",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"amount\": 299\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/discount-rules/update/13dfbda6-1818-45dd-bd28-4f64d3572f9e",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discount-rules",
+								"update",
+								"13dfbda6-1818-45dd-bd28-4f64d3572f9e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Discount",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/discount-rules/delete/13dfbda6-1818-45dd-bd28-4f64d3572f9e",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"discount-rules",
+								"delete",
+								"13dfbda6-1818-45dd-bd28-4f64d3572f9e"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Orders",
+			"item": [
+				{
+					"name": "get orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/orders",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"state\":\"Gujarat\",\r\n    \"country\":\"India\",\r\n    \"productIds\":[\"f18ec585-b1e5-4f68-9d72-5f6ba7704ca7\"]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/orders/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete order",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/orders/delete/61e46860-141a-43b8-ba0d-8dd37b2e1bd6",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"orders",
+								"delete",
+								"61e46860-141a-43b8-ba0d-8dd37b2e1bd6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tax",
+			"item": [
+				{
+					"name": "get tax rules",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "localhost:8000/tax-rules",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tax-rules"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create Tax Rule",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\":\"India\",\r\n    \"state\": \"Gujarat\",\r\n    \"SGST\": 18,\r\n    \"GST\":18\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/tax-rules/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tax-rules",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete Tax",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "http://localhost:8000/tax-rules/delete/095669fe-d6e8-4a0c-bbd5-eccb6eea0225",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tax-rules",
+								"delete",
+								"095669fe-d6e8-4a0c-bbd5-eccb6eea0225"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update Tax",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "{{auth}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"state\":\"maharastra\",\r\n    \"SGST\":10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8000/tax-rules/update/095669fe-d6e8-4a0c-bbd5-eccb6eea0225",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"tax-rules",
+								"update",
+								"095669fe-d6e8-4a0c-bbd5-eccb6eea0225"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "RegisterUser",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"test2@gmail.com\",\r\n    \"password\":\"12345678\",\r\n    \"role\": \"admin\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"test2@gmail.com\",\r\n    \"password\":\"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8000/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -65,10 +65,8 @@ exports.createOrder = async (data,email) => {
     return { order: order.id, products, tax: null, totalAmount };
   }
 
-  const CGST =
-    totalAmount + Math.round(totalAmount * (applicableTax.GST / 100));
-  const SGST =
-    totalAmount + Math.round(totalAmount * (applicableTax.SGST / 100));
+  const CGST = Math.round(totalAmount * (applicableTax.GST / 100));
+  const SGST = Math.round(totalAmount * (applicableTax.SGST / 100));
   const order = await db.Orders.create({
     ...data,
     userId: email,

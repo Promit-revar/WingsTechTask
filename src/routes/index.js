@@ -108,7 +108,7 @@ router.post(
   createTaxRuleValidation,
   createTaxRule
 );
-router.patch("/tax-rules/update", validateAdmin, updateTaxRule);
+router.patch("/tax-rules/update/:id", validateAdmin,validateId, updateTaxRule);
 router.delete("/tax-rules/delete/:id", validateAdmin, validateId, deleteTaxRule);
 
 //order routes ...

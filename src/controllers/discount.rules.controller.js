@@ -11,7 +11,7 @@ const NotFoundError = require("../utils/errors/resource.not.found.error");
 
 exports.listDiscountRules = async (req, res) => {
   try {
-    const result = await getDiscountRules();
+    const result = await getDiscountRules(req.query);
     res.status(200).json({
       success: true,
       result,

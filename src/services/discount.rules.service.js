@@ -2,7 +2,7 @@ const db = require("../models");
 const { Op } = require("sequelize");
 const HTTPError = require("../utils/errors/http.error");
 const NotFoundError = require("../utils/errors/resource.not.found.error");
-exports.getDiscountRules = async () => {
+exports.getDiscountRules = async (query) => {
   const discountRules = await db.Discount_Rules.findAndCountAll({
     where:query
   });

@@ -6,7 +6,7 @@ module.exports = {
     
      await queryInterface.bulkInsert('Tax_Rules', [
       {
-        "id": 1,
+        "id": "095669fe-d6e8-4a0c-bbd5-eccb6eea0225",
         "country": "India",
         "state": "Gujarat",
         "SGST": 18,
